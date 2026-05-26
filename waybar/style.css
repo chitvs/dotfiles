@@ -1,0 +1,53 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "SF Mono", monospace; 
+    font-size: 13px;
+    background: #000000;
+}
+
+window#waybar {
+    background: #000000;
+    color: #ffffff;
+}
+
+button {
+    box-shadow: none;
+    text-shadow: none;
+}
+
+button:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+#workspaces button {
+    padding: 0 12px;
+    color: #333333;
+}
+
+#workspaces button.active {
+    color: #ffffff;
+}
+
+#clock, #network, #bluetooth, #mpris, #pulseaudio, #battery {
+    padding: 0 10px;
+    color: #ffffff;
+}
+
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+}
+
+#battery.warning {
+    color: #ffaa00;
+}
+
+#battery.critical {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+#mpris.paused, #mpris.stopped {
+    color: #333333;
+}
