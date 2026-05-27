@@ -1,1 +1,5 @@
+configuration {
+    terminal: "kitty";
+}
+
 @theme "/usr/share/rofi/themes/gruvbox-dark-hard.rasi"
