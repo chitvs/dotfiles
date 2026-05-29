@@ -7,12 +7,25 @@
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 
 -- built-in screen
-hl.monitor({
-    output = "eDP-1",
-    mode = "1920x1200@59.95",
-    position = "0x0",
-    scale = 1,
-})
+
+-- read lid state
+local lid_handle = io.popen("cat /proc/acpi/button/lid/*/state 2>/dev/null")
+local lid_state = lid_handle:read("*a") or ""
+lid_handle:close()
+
+if string.match(lid_state, "closed") then
+    hl.monitor({
+        output = "eDP-1",
+        disabled = true,
+    })
+else
+    hl.monitor({
+        output = "eDP-1",
+        mode = "1920x1200@59.95",
+        position = "0x0",
+        scale = 1,
+    })
+end
 
 -- external monitors --
 
@@ -72,7 +85,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
     hl.exec_cmd("waybar")
-    hl.exec_cmd("swaync")
+    hl.exec_cmd("mako")
     hl.exec_cmd("swayosd-server")
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd("hypridle")
@@ -201,11 +214,11 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
--- == Cycle workspaces with CTRL+SHIFT+arrows ==
+-- cycle workspaces with CTRL+SHIFT+arrows ==
 hl.bind("CTRL + SHIFT + right", hl.dsp.focus({ workspace = "+1" }))
 hl.bind("CTRL + SHIFT + left",  hl.dsp.focus({ workspace = "-1" }))
 
--- == Mouse: drag and resize ==
+-- mouse (drag and resize) ==
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
@@ -221,8 +234,11 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lo
 -- clipboard
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -p 'Clipboard' | cliphist decode | wl-copy"))
 
--- screenshot (region, to clipboard)
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region --clipboard-only"))
+-- region screenshot (click & drag)
+hl.bind("Print", hl.dsp.exec_cmd([[sh -c 'grim -g "$(slurp)" - | swappy -f -']]))
+
+-- full screen screenshot (instant)
+hl.bind("SHIFT + Print", hl.dsp.exec_cmd([[sh -c 'grim - | swappy -f -']]))
 
 -- rofi window switcher (Alt+Tab)
 hl.bind("ALT + Tab", hl.dsp.exec_cmd(
@@ -233,9 +249,9 @@ hl.bind("ALT + Tab", hl.dsp.exec_cmd(
 	"-kb-row-up 'Alt+ISO_Left_Tab,Up'"
 ))
 
--- ================
--- == Lid Switch ==
--- ================
+--------------------
+---- LID SWITCH ----
+--------------------
 
 -- disable internal monitor when lid closes
 hl.bind("switch:on:Lid Switch", function()
