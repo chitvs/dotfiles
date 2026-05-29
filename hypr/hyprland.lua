@@ -120,6 +120,35 @@ hl.config({
     },
 })
 
+----------------------
+---- WINDOW RULES ----
+----------------------
+-- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
+
+-- network manager
+hl.window_rule({
+    match = { class = "nm-connection-editor" },
+    float = true,
+    size = {700, 500},
+    center = true,
+})
+
+-- bluetooth manager
+hl.window_rule({
+    match = { class = "blueman-manager" },
+    float = true,
+    size = {700, 500},
+    center = true,
+})
+
+-- volume manager
+hl.window_rule({
+    match = { class = "org.pulseaudio.pavucontrol" },
+    float = true,
+    size = {900, 700},
+    center = true,
+})
+
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
