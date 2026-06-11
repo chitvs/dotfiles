@@ -27,7 +27,9 @@
         "max-length": 25,
         "tooltip": true,
         "tooltip-format": "{artist} - {title}",
-		"ignored-players": ["vlc", "mpv"]
+		"ignored-players": ["vlc", "mpv"],
+		"on-scroll-up": "playerctl volume 0.05+",
+        "on-scroll-down": "playerctl volume 0.05-"
     },
 
     "network": {
