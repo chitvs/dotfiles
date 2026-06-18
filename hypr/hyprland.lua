@@ -39,7 +39,7 @@ hl.monitor({
 
 -- asus (ext monitor 2)
 hl.monitor({
-    output = "DP-5",
+    output = "DP-2",
     mode = "1920x1080@60",
     position = "3840x0",
     scale = 1,
@@ -118,10 +118,14 @@ hl.config({
     },
 
     misc = {
-		vrr = 1,
+		vrr = 0,
         force_default_wallpaper = 0,
         disable_hyprland_logo = true,
 		animate_manual_resizes = true,
+    },
+
+	cursor = {
+        no_hardware_cursors = 1,
     },
 
     input = {
