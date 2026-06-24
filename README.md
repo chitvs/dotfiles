@@ -8,5 +8,6 @@ what I use:
 - `hyprpaper`, wallpaper utility
 - `rofi`, app launcher, powermenu
 - `waybar`, status bar
+- `cliphist`, clipboard
 - `mako`, notification daemon
 - `swappy`, screenshot editing tool
