@@ -45,7 +45,6 @@ button:hover {
 
 #battery.critical {
     color: #ff0000;
-    font-weight: bold;
 }
 
 #mpris.paused, #mpris.stopped {

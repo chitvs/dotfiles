@@ -227,13 +227,13 @@ hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
 -- volume
-hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("swayosd-client --output-volume raise"), { locked = true, repeating = true })
-hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("swayosd-client --output-volume lower"), { locked = true, repeating = true })
+hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd([[sh -c 'flock -n /tmp/vol.lock sh -c "swayosd-client --output-volume raise; sleep 0.1"']]), { locked = true, repeating = true })
+hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd([[sh -c 'flock -n /tmp/vol.lock sh -c "swayosd-client --output-volume lower; sleep 0.1"']]), { locked = true, repeating = true })
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("swayosd-client --output-volume mute-toggle"), { locked = true })
 
 -- brightness
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("swayosd-client --brightness raise"), { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("swayosd-client --brightness lower"), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd([[sh -c 'flock -n /tmp/bri.lock sh -c "swayosd-client --brightness raise; sleep 0.1"']]), { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd([[sh -c 'flock -n /tmp/bri.lock sh -c "swayosd-client --brightness lower; sleep 0.1"']]), { locked = true, repeating = true })
 
 -- clipboard
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("rofi -modi clipboard:~/.config/rofi/cliphist-rofi-img -show clipboard -show-icons"))
