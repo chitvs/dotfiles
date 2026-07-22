@@ -18,7 +18,26 @@
         "interval": 1,
         "format": "{:%H:%M:%S | %d-%m-%Y}",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "tooltip": true
+        "tooltip": true,
+        "calendar": {
+            "iso8601": true,
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffffff'><b>{}</b></span>",
+                "days": "<span color='#ffffff'>{}</span>",
+                "weeks": "<span color='#888888'>W{}</span>",
+                "weekdays": "<span color='#ffffff'><b>{}</b></span>",
+                "today": "<span color='#ffffff'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
 
     "mpris": {
@@ -35,7 +54,7 @@
         "format-ethernet": "[NET: ETH]",
         "format-disconnected": "[NET: DOWN]",
         "tooltip": false,
-        "on-click": "pkill nm-connection-editor; nm-connection-editor"
+        "on-click": "kitty --class nmtui -e nmtui"
     },
 
     "bluetooth": {
