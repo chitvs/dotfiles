@@ -75,6 +75,7 @@ hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 hl.env("GTK_THEME", "Breeze-Dark")
 hl.env("XCURSOR_THEME", "breeze_cursors")
 hl.env("XCURSOR_SIZE", "24")
+hl.env("WLR_LOG_LEVEL", "err")
 
 -------------------
 ---- AUTOSTART ----
@@ -82,6 +83,7 @@ hl.env("XCURSOR_SIZE", "24")
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 
 hl.on("hyprland.start", function()
+	hl.exec_cmd("plymouth quit")
 	hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
     hl.exec_cmd("waybar")
@@ -99,6 +101,11 @@ end)
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/
 
 hl.config({
+    debug = {
+        disable_logs = true,
+        disable_time = true,
+    },
+
     general = {
         gaps_in = 0,
         gaps_out = 0,
