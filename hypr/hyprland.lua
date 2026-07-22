@@ -150,25 +150,25 @@ hl.config({
 
 -- network manager
 hl.window_rule({
-    match = { class = "nm-connection-editor" },
+    match = { class = "^(nmtui)$" },
     float = true,
-    size = {700, 500},
+    size = { 1000, 600 },
     center = true,
 })
 
 -- bluetooth manager
 hl.window_rule({
-    match = { class = "blueman-manager" },
+    match = { class = "^(blueman-manager)$" },
     float = true,
-    size = {700, 500},
+    size = { 700, 500 },
     center = true,
 })
 
 -- volume manager
 hl.window_rule({
-    match = { class = "org.pulseaudio.pavucontrol" },
+    match = { class = "^(org.pulseaudio.pavucontrol)$" },
     float = true,
-    size = {900, 700},
+    size = { 900, 700 },
     center = true,
 })
 
@@ -194,9 +194,12 @@ hl.bind(mainMod .. " + SHIFT + Space", hl.dsp.exec_cmd("~/.config/rofi/powermenu
 -- fullscreen 
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 
--- float toggle, also centers and fits the window ==
-hl.bind(mainMod .. " + W", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + W", hl.dsp.window.center())
+-- float toggle, resize, and center
+hl.bind(mainMod .. " + W", function()
+    hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
+    hl.dispatch(hl.dsp.window.resize({ x = 1600, y = 900, relative = false }))
+    hl.dispatch(hl.dsp.window.center())
+end)
 
 -- focus navigation
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "l" }))
@@ -290,4 +293,3 @@ hl.bind("switch:off:Lid Switch", function()
         )
     end, { timeout = 250, type = "oneshot" })
 end, { locked = true })
-
