@@ -1,7 +1,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "SF Mono", monospace; 
+    font-family: "SF Mono", "Symbols Nerd Font", monospace;
     font-size: 13px;
     background: #000000;
 }
@@ -30,8 +30,19 @@ button:hover {
     color: #ffffff;
 }
 
-#clock, #network, #bluetooth, #mpris, #pulseaudio, #battery {
-    padding: 0 10px;
+#clock {
+    padding-left: 15px;
+    color: #ffffff;
+}
+
+#network, #bluetooth, #mpris, #pulseaudio, #battery {
+    padding: 0 6px;
+    color: #ffffff;
+}
+
+#custom-power {
+    padding-left: 6px;
+    padding-right: 12px;
     color: #ffffff;
 }
 

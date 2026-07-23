@@ -6,7 +6,7 @@
     
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["mpris", "network", "bluetooth", "pulseaudio", "battery"],
+    "modules-right": ["mpris", "network", "bluetooth", "pulseaudio", "battery", "custom/power"],
 
     "hyprland/workspaces": {
         "format": "{name}",
@@ -50,26 +50,35 @@
     },
 
     "network": {
-        "format-wifi": "[NET: {essid}]",
-        "format-ethernet": "[NET: ETH]",
-        "format-disconnected": "[NET: DOWN]",
-        "tooltip": false,
+        "format-wifi": "󰤨",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip": true,
+        "tooltip-format-wifi": "{essid}",
+        "tooltip-format-ethernet": "Ethernet",
+        "tooltip-format-disconnected": "Disconnected",
         "on-click": "kitty --class nmtui -e nmtui"
     },
 
     "bluetooth": {
-        "format": "[BT: ON]",
-        "format-disabled": "[BT: OFF]",
-        "format-connected": "[BT: {device_alias}]",
-        "tooltip": false,
-        "on-click": "pkill blueman-manager; blueman-manager"
+        "format": "󰂯",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱",
+        "tooltip": true,
+        "tooltip-format": "",
+        "tooltip-format-disabled": "",
+        "tooltip-format-connected": "{device_alias}",
+        "on-click": "blueman-manager"
     },
     
     "pulseaudio": {
-        "format": "[VOL {volume}%]",
-        "format-muted": "[MUTED]",
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 {volume}%",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
         "tooltip": false,
-        "on-click": "pkill pavucontrol; pavucontrol",
+        "on-click": "pavucontrol",
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
@@ -80,6 +89,15 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "[BAT {capacity}%]"
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "custom/power": {
+        "format": "󰐥",
+        "tooltip": false,
+        "on-click": "~/.config/rofi/powermenu.sh"
     }
 }
