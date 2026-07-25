@@ -35,7 +35,7 @@ button:hover {
     color: #ffffff;
 }
 
-#network, #bluetooth, #mpris, #pulseaudio, #battery {
+#network, #bluetooth, #mpris, #pulseaudio, #backlight, #battery {
     padding: 0 6px;
     color: #ffffff;
 }
