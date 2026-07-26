@@ -35,7 +35,19 @@ button:hover {
     color: #ffffff;
 }
 
-#network, #bluetooth, #mpris, #pulseaudio, #backlight, #battery, #cpu, #memory, #disk, #tray {
+#network, #bluetooth, #tray {
+    padding: 0 6px;
+    color: #ffffff;
+}
+
+#pulseaudio, #backlight, #battery, #cpu, #memory, #disk {
+    min-width: 55px;
+    padding: 0 2px;
+    color: #ffffff;
+}
+
+#mpris {
+    min-width: 140px;
     padding: 0 6px;
     color: #ffffff;
 }

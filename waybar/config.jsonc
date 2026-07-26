@@ -43,10 +43,10 @@
     "mpris": {
         "format": "{title}",
         "format-paused": "{title}",
-        "max-length": 25,
+        "max-length": 20,
         "tooltip": true,
         "tooltip-format": "{artist} - {title}",
-		"ignored-players": ["vlc", "mpv"]
+        "ignored-players": ["vlc", "mpv"]
     },
 
     "tray": {
@@ -109,6 +109,7 @@
             "default": ["󰕿", "󰖀", "󰕾"]
         },
         "tooltip": false,
+        "smooth-scrolling-threshold": 2.0,
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "pavucontrol",
         "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
@@ -119,6 +120,7 @@
         "format": "{icon} {percent}%",
         "format-icons": ["󰃞", "󰃟", "󰃠"],
         "tooltip": false,
+        "smooth-scrolling-threshold": 2.0,
         "on-scroll-up": "brightnessctl set 5%+",
         "on-scroll-down": "brightnessctl set 5%-"
     },
