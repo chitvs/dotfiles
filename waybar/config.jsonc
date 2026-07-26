@@ -6,7 +6,7 @@
     
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock"],
-    "modules-right": ["mpris", "network", "bluetooth", "pulseaudio", "backlight", "battery", "custom/power"],
+    "modules-right": ["mpris", "tray", "custom/separator", "network", "bluetooth", "custom/separator", "disk", "cpu", "memory", "pulseaudio", "custom/separator", "backlight", "battery", "custom/separator", "custom/power"],
 
     "hyprland/workspaces": {
         "format": "{name}",
@@ -49,15 +49,25 @@
 		"ignored-players": ["vlc", "mpv"]
     },
 
+    "tray": {
+        "icon-size": 14,
+        "spacing": 8
+    },
+
+    "custom/separator": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
+
     "network": {
-        "format-wifi": "󰤨",
-        "format-ethernet": "󰈀",
-        "format-disconnected": "󰤭",
-        "tooltip": true,
-        "tooltip-format-wifi": "{essid}",
-        "tooltip-format-ethernet": "Ethernet",
-        "tooltip-format-disconnected": "Disconnected",
-        "on-click": "kitty --class nmtui -e nmtui"
+        "interface": ["enp.*", "eth.*", "wlan.*", "wlp.*"],
+        "format-ethernet": "󰈀 up",
+        "format-wifi": "󰤨 {essid}",
+        "format-unknown": "󰈂 up",
+        "format-disconnected": "󰤭 down",
+        "on-click": "kitty --class nmtui -e nmtui",
+        "tooltip": false
     },
 
     "bluetooth": {
@@ -71,6 +81,27 @@
         "on-click": "blueman-manager"
     },
     
+    "disk": {
+        "interval": 30,
+        "path": "/",
+        "format": "󰋊 {percentage_used}%",
+        "tooltip": true,
+        "tooltip-format": "Disk: {used} / {total} ({percentage_used}%)"
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": " {usage}%",
+        "tooltip": true
+    },
+
+    "memory": {
+        "interval": 2,
+        "format": " {percentage}%",
+        "tooltip": true,
+        "tooltip-format": "RAM: {used:0.1f}GiB / {total:0.1f}GiB"
+    },
+
     "pulseaudio": {
         "format": "{icon} {volume}%",
         "format-muted": "󰝟 {volume}%",
@@ -78,8 +109,8 @@
             "default": ["󰕿", "󰖀", "󰕾"]
         },
         "tooltip": false,
-        "on-click": "pavucontrol",
-        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol",
         "on-scroll-up": "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
     },

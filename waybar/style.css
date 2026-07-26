@@ -35,8 +35,30 @@ button:hover {
     color: #ffffff;
 }
 
-#network, #bluetooth, #mpris, #pulseaudio, #backlight, #battery {
+#network, #bluetooth, #mpris, #pulseaudio, #backlight, #battery, #cpu, #memory, #disk, #tray {
     padding: 0 6px;
+    color: #ffffff;
+}
+
+#custom-separator {
+    padding: 0 4px;
+    color: #ffffff;
+}
+
+#tray menu {
+    background: #000000;
+    border: 1px solid #333333;
+    padding: 4px 0;
+}
+
+#tray menu menuitem {
+    background: transparent;
+    color: #ffffff;
+    padding: 4px 12px;
+}
+
+#tray menu menuitem:hover {
+    background: #222222;
     color: #ffffff;
 }
 
@@ -44,6 +66,10 @@ button:hover {
     padding-left: 6px;
     padding-right: 12px;
     color: #ffffff;
+}
+
+#network.disconnected, #bluetooth.disabled {
+    color: #555555;
 }
 
 #battery.charging, #battery.plugged {
