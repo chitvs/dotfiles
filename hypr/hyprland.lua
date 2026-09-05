@@ -196,9 +196,19 @@ hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "fullscreen", actio
 
 -- float toggle, resize, and center
 hl.bind(mainMod .. " + W", function()
+    local win = hl.get_active_window()
+    if not win then return end
+
+    local was_floating = win.floating
+
     hl.dispatch(hl.dsp.window.float({ action = "toggle" }))
-    hl.dispatch(hl.dsp.window.resize({ x = 1600, y = 900, relative = false }))
-    hl.dispatch(hl.dsp.window.center())
+
+    -- size and center only when the window has just become floating
+    -- running these on the way back to tiled resizes the dwindle split instead
+    if not was_floating then
+        hl.dispatch(hl.dsp.window.resize({ x = 1600, y = 900, relative = false }))
+        hl.dispatch(hl.dsp.window.center())
+    end
 end)
 
 -- focus navigation
